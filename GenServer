@@ -1,0 +1,18 @@
+defmodule Contador do
+  use GenServer  # Esto incluye las funciones de GenServer
+
+  # --- Funciones del cliente (las que usaremos) ---
+  
+  # Esta función inicia el GenServer, es decir, inicia el contador.
+  def iniciar do
+    GenServer.start_link(__MODULE__, 0, name: __MODULE__)
+  end
+
+  # Esta función incrementa el contador en 1.
+  def incrementar do
+    GenServer.cast(__MODULE__, :incrementar)
+  end
+
+  # Esta función nos devuelve el valor actual del contador.
+  def obtener_valor do
+    GenServer.call(__MODULE
